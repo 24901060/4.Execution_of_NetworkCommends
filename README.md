@@ -26,54 +26,54 @@ This commands includes
 • Other IP Commands e.g. show ip route etc.
 <BR>
 
+Program:
+Ping:
+```
+import time
+from ping3 import ping
+
+def ping_simulation(host, count=4) -> None:
+    print(f"Pinging {host} with {count} packets:")
+    for i in range(count):
+        delay = ping(host, timeout=1)
+        if delay is None:
+            print(f"Request timed out.")
+        else:
+            print(f"Reply from {host}: time={round(delay * 1000, 2)} ms")
+        time.sleep(1)
+ping_simulation('google.com')
+
+
+```
+Traceroute:
+```
+import subprocess
+import platform
+
+def traceroute_simulation(host):
+    system = platform.system()
+
+    if system == "Windows":
+        cmd = ["tracert", host]
+    else:
+        cmd = ["traceroute", host]
+
+    try:
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        print(result.stdout)
+    except Exception as e:
+        print(f"Error: {e}")
+
+# Run the function
+traceroute_simulation('google.com')
+```
 ## Output
-netstat
-
-![image](https://github.com/user-attachments/assets/3481e48f-9f7b-4524-abee-f4f53e42d02b)
-
-ipconfig
-
-![image](https://github.com/user-attachments/assets/347ce034-32f4-49ae-bb46-113c50fd79b5)
-
-ping 
-
-![image](https://github.com/user-attachments/assets/d166e41f-db97-4ff7-9e36-f653d9376840)
-
-tracert
-
-![image](https://github.com/user-attachments/assets/58dce052-6180-46d5-9071-bd22b377cf75)
-
-nslookup
-
-![image](https://github.com/user-attachments/assets/ebee7588-b045-4d70-a0cb-bcbd3ccb9107)
-
-getmac
-
-![image](https://github.com/user-attachments/assets/60360421-e819-44f2-81d3-065a526d486e)
-
-hostname
-
-![image](https://github.com/user-attachments/assets/f9067041-13ba-442c-b677-e030e3898bba)
-
-nbtstat
-
-![image](https://github.com/user-attachments/assets/44ed8868-b84e-4bb1-9a43-6bcc67777e80)
-
-arp
-
-![image](https://github.com/user-attachments/assets/d96cfdf0-2716-48de-9e4f-37d907844570)
-
-systeminfo
-
-![image](https://github.com/user-attachments/assets/ab4d5b48-8348-49c9-8656-0cc0d308742e)
+Ping:
+![WhatsApp Image 2025-05-01 at 15 58 37_dd2f7513](https://github.com/user-attachments/assets/64ec6570-f8cd-41fa-8467-c98c37a30f44)
 
 
-
-
-
-
-
-
+Traceroute:
+![WhatsApp Image 2025-05-01 at 15 58 38_c9155995](https://github.com/user-attachments/assets/bfec9ccd-3066-4a69-a6c4-0b09047ae37f)
 
 
 ## Result
